@@ -150,6 +150,10 @@
     </div>
 </div>
 
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 
 /* Generate floating hearts */
@@ -167,6 +171,8 @@ const images = ["valentines.jpg","valentines2.jpg","valentines.gif"];
 
 const imageElement = document.getElementById("loveImage");
 
+const music = document.getElementById("bgMusic");
+
 function openModal() {
     document.getElementById("loveModal").style.display = "flex";
 
@@ -177,10 +183,17 @@ function openModal() {
         index = (index + 1) % images.length;
         imageElement.src = images[index];
     }, 2000);
+
+    music.volume = 0.4;
+     music.play().catch(error => {
+        console.log("Autoplay blocked:", error);
+    });
 }
 
 function closeModal() {
     document.getElementById("loveModal").style.display = "none";
+      music.pause();   // stop music
+    music.currentTime = 0; // reset
 }
 
 /* Close when clicking outside modal */
@@ -191,6 +204,8 @@ window.onclick = function(event) {
     }
 }
 </script>
+
+
 
 </body>
 </html>
