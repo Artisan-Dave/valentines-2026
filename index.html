@@ -145,7 +145,7 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">✖</span>
         <h2 style="color:#e91e63;">For You 💖</h2>
-        <img src="valentines.jpg" alt="Love Image">
+        <img src="" alt="Love Image" id="loveImage">
         <p>I Love You So Much!! Nyahahahaha!! ❤️</p>
     </div>
 </div>
@@ -163,8 +163,20 @@ for (let i = 0; i < 20; i++) {
     document.body.appendChild(heart);
 }
 
+const images = ["valentines.jpg","valentines2.jpg","valentines.gif"];
+
+const imageElement = document.getElementById("loveImage");
+
 function openModal() {
     document.getElementById("loveModal").style.display = "flex";
+
+    let index = Math.floor(Math.random() * images.length);
+    imageElement.src = images[index];
+
+    window.carousel = setInterval(() => {
+        index = (index + 1) % images.length;
+        imageElement.src = images[index];
+    }, 2000);
 }
 
 function closeModal() {
